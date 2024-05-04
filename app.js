@@ -2,17 +2,19 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+app.set("view engine", "ejs");
+
 app.get("/", (req, res) => {
-    res.send("Good News");
+    res.render("home/index");
+})
+
+app.get("/add_news", (req, res) => {
+    res.render("admin/form_add_news");
 });
 
-app.get("/tech", (req, res) => {
-    res.end("<html><body>Tech News</body></html>");
-});
-
-app.get("/beauty", (req, res) => {
-    res.end("<html><body>Beauty Blog</body></html>");
-});
+app.get("/news", (req, res) => {
+    res.render("news/news");
+})
 
 
 app.listen(port, () => {
