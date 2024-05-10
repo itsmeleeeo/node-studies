@@ -1,21 +1,12 @@
-const express = require("express");
-const app = express();
 const port = 3000;
+const app = require("./config/server");
+const routeHome = require("./app/routes/home");
+const routeNews = require("./app/routes/news");
+const routeAddNews = require("./app/routes/add_news");
 
-app.set("view engine", "ejs");
-
-app.get("/", (req, res) => {
-    res.render("home/index");
-})
-
-app.get("/add_news", (req, res) => {
-    res.render("admin/form_add_news");
-});
-
-app.get("/news", (req, res) => {
-    res.render("news/news");
-})
-
+routeHome(app);
+routeNews(app);
+routeAddNews(app);
 
 app.listen(port, () => {
     console.log(`server running on port ${port}`);
