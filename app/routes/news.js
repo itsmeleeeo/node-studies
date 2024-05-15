@@ -12,8 +12,7 @@ module.exports = (app) => {
         });
 
         conn.query('select * from news', (err, resp) => {
-            res.send(resp);
-            console.log(conn);
+            res.render("news/news", {news: resp});
         });
     });
 }
