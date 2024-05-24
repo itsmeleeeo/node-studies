@@ -6,11 +6,9 @@ module.exports = (app) => {
     app.post("/news/save", (req, res) => {
         let newsInfo = req.body;
         let conn = app.config.DbConnection();
-        let newsModel = app.app.models.NewsModel;
+        let newsModel = new app.app.models.NewsDAO(conn);
 
-        newsModel.saveNews(newsInfo, conn, (err, result) => {
-            console.log(err);
-            console.log(result);
+        newsModel.saveNews(newsInfo, (err, result) => {
             res.redirect("/news");
         });
     });
